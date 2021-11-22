@@ -9,6 +9,17 @@
 var app = new Vue({
     el: "#container",
     data: {
-        email: "antoniopiazza18@gmail.com",
+        emails: [],
+    },
+    mounted(){
+        const self = this;
+        for (let i = 0; i < 10; i++) {
+            axios
+            .get("https://flynn.boolean.careers/exercises/api/random/mail")
+            .then(function(email){
+                self.emails.push(email.data.response);
+            })
+        }
+        console.log(self.emails);
     }
 })
